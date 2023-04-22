@@ -262,29 +262,16 @@ def normalise_windows_by_middle(window_data, single_window = False):
 	return np.array(normalised_data)
 
 def normalise_windows_by_formula(window_data, single_window = False):
-	# normalised_data = []
-	# window_data = [window_data] if single_window else window_data
-	# for window in window_data:
-	# 	normalised_window = []
-	# 	for col_i in range(window.shape[1]):
-	# 		max_in_column = max[window[:, col_i]]
-	# 		min_in_column = min[window[:, col_i]]
-	# 		normalised_col = [((float(p) / float(max_in_column)) / (float(max_in_column) - float(min_in_column))) for p in window[:, col_i]]
-	# 		normalised_window.append(normalised_col)
-	# 	normalised_window = np.array(normalised_window)
-	# 	normalised_data.append(normalised_window)
-	# return np.array(normalised_data)
 	normalised_data = []
 	window_data = [window_data] if single_window else window_data
 	for window in window_data:
 		normalised_window = []
 		for col_i in range(window.shape[1]):
-			max_in_column = max(window[:, col_i])
-			min_in_column = min(window[:, col_i])
-			middle_in_column = (max_in_column + min_in_column) / 2
-			normalised_col = [((float(p) / float(max_in_column)) / (float(max_in_column) - float(min_in_column))) for p in window[:, col_i]]
-			normalised_window.append(normalised_col)
-		normalised_window = np.array(normalised_window).T
+	 		max_in_column = max(window[:, col_i])
+	 		min_in_column = min(window[:, col_i])
+	 		normalised_col = [((float(p) / float(max_in_column)) / (float(max_in_column) - float(min_in_column))) for p in window[:, col_i]]
+	 		normalised_window.append(normalised_col)
+		normalised_window = np.array(normalised_window)
 		normalised_data.append(normalised_window)
 	return np.array(normalised_data)
 
@@ -315,6 +302,8 @@ volumes = x_train[0][:,1]
 print(volumes)
 print(min(volumes), max(volumes))
 print(x_train, y_train, x_train.shape, y_train.shape)
+
+print("Проверка: \n", data_train)
 
 def get_train_data2(seq_len, normalise):
 	data_windows = []
